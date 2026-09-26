@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francisco Gomez — Senior Software Engineer & AWS Solutions Architect</title>
+<meta name="description" content="Senior Software Engineer and Tech Lead with 16+ years building enterprise Java systems. Spring Boot microservices on AWS. Available for remote freelance work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#111831; --card:#141c38; --line:#243056;
+    --text:#e6ebf7; --muted:#9aa6c4; --accent:#4fd1c5; --accent2:#7c9cff; --warn:#ffb86b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .mono{font-family:"JetBrains Mono",monospace}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav .brand{font-weight:700;color:var(--text)}
+  nav .brand span{color:var(--accent)}
+  nav ul{display:flex;gap:22px;list-style:none}
+  nav ul a{color:var(--muted);font-size:14px}
+  nav ul a:hover{color:var(--text);text-decoration:none}
+  @media (max-width:640px){nav ul{display:none}}
+
+  /* hero */
+  .hero{padding:90px 0 70px;background:radial-gradient(900px 400px at 80% -10%,rgba(124,156,255,.18),transparent),radial-gradient(700px 400px at 0% 10%,rgba(79,209,197,.12),transparent)}
+  .hero-grid{display:grid;grid-template-columns:160px 1fr;gap:36px;align-items:center}
+  .avatar{width:160px;height:160px;border-radius:50%;border:3px solid var(--accent);background:linear-gradient(135deg,#1c2750,#2b3a78);display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:700;color:var(--accent);overflow:hidden}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  .tag{display:inline-block;font-size:13px;color:var(--accent);border:1px solid rgba(79,209,197,.4);background:rgba(79,209,197,.08);padding:4px 12px;border-radius:999px;margin-bottom:14px}
+  h1{font-size:44px;line-height:1.15;margin-bottom:10px}
+  .hero p.lead{font-size:19px;color:var(--muted);max-width:640px}
+  .hero p.lead strong{color:var(--text)}
+  .cta{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:11px 20px;border-radius:10px;font-weight:600;font-size:15px}
+  .btn.primary{background:var(--accent);color:#06221f}
+  .btn.ghost{border:1px solid var(--line);color:var(--text)}
+  .btn:hover{text-decoration:none;opacity:.9}
+  @media (max-width:640px){.hero-grid{grid-template-columns:1fr;text-align:left}.avatar{width:120px;height:120px;font-size:40px}h1{font-size:32px}}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .stat b{display:block;font-size:26px;color:var(--text)}
+  .stat span{font-size:13px;color:var(--muted)}
+  @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:70px 0}
+  section.alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  h2{font-size:30px;margin-bottom:8px}
+  .sub{color:var(--muted);margin-bottom:34px}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .skill{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .skill h3{font-size:15px;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;padding:4px 10px;border-radius:8px;background:#1b2550;border:1px solid var(--line);color:var(--text)}
+
+  /* projects */
+  .project{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;margin-bottom:26px}
+  .project-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .project h3{font-size:22px}
+  .year{font-size:13px;color:var(--muted)}
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media (max-width:860px){.pgrid{grid-template-columns:1fr}}
+  .block{margin-bottom:14px}
+  .block h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--warn);margin-bottom:4px}
+  .block p{color:var(--muted);font-size:15px}
+  .block p strong{color:var(--text)}
+  .diagram{background:#0e1530;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .diagram svg{width:100%;height:auto;display:block}
+  .note{font-size:12px;color:var(--muted);margin-top:6px}
+
+  /* experience */
+  .timeline{border-left:2px solid var(--line);margin-left:6px}
+  .job{position:relative;padding:0 0 30px 26px}
+  .job::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+  .job h3{font-size:18px}
+  .job .meta{font-size:14px;color:var(--muted);margin-bottom:8px}
+  .job ul{padding-left:18px;color:var(--muted);font-size:15px}
+  .job li{margin-bottom:4px}
+
+  /* contact */
+  .contact{text-align:center}
+  .contact p{color:var(--muted);max-width:620px;margin:0 auto 26px}
+  footer{padding:26px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">francisco<span>.gomez</span></a>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="avatar"><img src="photo.jpg" alt="Francisco Gomez"></div>
+      <div>
+        <span class="tag">● Available for remote freelance work · UTC-5</span>
+        <h1>Francisco Gomez</h1>
+        <p class="lead"><strong>Senior Software Engineer & Tech Lead</strong> · AWS Certified Solutions Architect. I design and build cloud-native Java microservices on AWS and lead teams from requirements to production.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Work with me</a>
+          <a class="btn ghost" href="Francisco_Gomez_CV_EN.pdf" target="_blank">Download CV</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/francisco-gomezn/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>16+</b><span>years building enterprise systems</span></div>
+      <div class="stat"><b>4+</b><span>years as Technical Lead</span></div>
+      <div class="stat"><b>12K+</b><span>e-invoices / month processed (DIAN)</span></div>
+      <div class="stat"><b>AWS</b><span>Certified Solutions Architect – Associate</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub">The stack I use every day to design, build and run production systems.</p>
+    <div class="skills">
+      <div class="skill"><h3>Cloud · AWS</h3><div class="chips">
+        <span class="chip">ECS</span><span class="chip">Fargate</span><span class="chip">ECR</span><span class="chip">EC2</span><span class="chip">Lambda</span><span class="chip">API Gateway</span><span class="chip">ELB</span><span class="chip">VPC</span><span class="chip">RDS</span><span class="chip">S3</span><span class="chip">CloudFront</span><span class="chip">SQS</span><span class="chip">SNS</span>
+      </div></div>
+      <div class="skill"><h3>Backend</h3><div class="chips">
+        <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Microservices</span><span class="chip">REST APIs</span><span class="chip">SOAP / XML</span><span class="chip">Docker</span>
+      </div></div>
+      <div class="skill"><h3>Data</h3><div class="chips">
+        <span class="chip">PostgreSQL</span><span class="chip">Oracle</span><span class="chip">PL/SQL</span><span class="chip">MySQL</span><span class="chip">SQL Server</span>
+      </div></div>
+      <div class="skill"><h3>Architecture & AI</h3><div class="chips">
+        <span class="chip">Solution Architecture</span><span class="chip">Event-driven design</span><span class="chip">Legacy modernization</span><span class="chip">Tech leadership</span><span class="chip">AI-assisted dev (SDD)</span><span class="chip">Angular</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <h2>Featured projects</h2>
+    <p class="sub">Selected work. Client names and confidential details are omitted.</p>
+
+    <!-- PROJECT 1 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>Cloud-Native Microservices Platform on AWS</h3>
+        <span class="year mono">Sophos Solutions · 2022 – present</span>
+      </div>
+      <div class="pgrid">
+        <div>
+          <div class="block"><h4>Problem</h4><p>Enterprise clients needed scalable, reliable backend services that could evolve fast and integrate with many internal and external systems.</p></div>
+          <div class="block"><h4>Solution</h4><p>Designed and led a team of 4–6 engineers building Spring Boot microservices on ECS/Fargate, exposed through API Gateway and load balancers inside private VPCs, with asynchronous, event-driven integrations via SQS, SNS and Lambda.</p></div>
+          <div class="block"><h4>Stack</h4><div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">ECS/Fargate</span><span class="chip">ECR</span><span class="chip">API Gateway</span><span class="chip">SQS/SNS</span><span class="chip">Lambda</span><span class="chip">RDS</span><span class="chip">S3</span><span class="chip">CloudFront</span></div></div>
+          <div class="block"><h4>Impact</h4><p>Independent deployable services, horizontal scaling per service and decoupled integrations that keep working when downstream systems fail.</p></div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 460 330" role="img" aria-label="AWS microservices architecture diagram">
+            <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9aa6c4"/></marker></defs>
+            <g font-family="Inter,sans-serif" font-size="11" fill="#e6ebf7" text-anchor="middle">
+              <rect x="10" y="20" width="90" height="36" rx="8" fill="#1b2550" stroke="#7c9cff"/><text x="55" y="42">Clients</text>
+              <rect x="130" y="20" width="100" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="180" y="42">CloudFront + S3</text>
+              <rect x="130" y="80" width="100" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="180" y="102">API Gateway</text>
+              <rect x="120" y="140" width="330" height="120" rx="10" fill="none" stroke="#243056" stroke-dasharray="5 4"/>
+              <text x="400" y="156" fill="#9aa6c4" font-size="10">VPC</text>
+              <rect x="140" y="165" width="80" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="180" y="187">ELB</text>
+              <rect x="245" y="160" width="100" height="46" rx="8" fill="#1b2550" stroke="#ffb86b"/><text x="295" y="180">Spring Boot</text><text x="295" y="195" fill="#9aa6c4" font-size="10">ECS / Fargate</text>
+              <rect x="360" y="165" width="80" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="400" y="187">RDS</text>
+              <rect x="245" y="215" width="100" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="295" y="237">SQS / SNS</text>
+              <rect x="360" y="215" width="80" height="36" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="400" y="237">Lambda</text>
+              <rect x="245" y="285" width="100" height="32" rx="8" fill="#1b2550" stroke="#7c9cff"/><text x="295" y="305">ECR images</text>
+            </g>
+            <g stroke="#9aa6c4" stroke-width="1.4" fill="none" marker-end="url(#a1)">
+              <path d="M100 38 H128"/><path d="M55 56 V98 H128"/><path d="M180 116 V163"/><path d="M220 183 H243"/><path d="M345 183 H358"/><path d="M295 206 V213"/><path d="M345 233 H358"/><path d="M295 283 V208"/>
+            </g>
+          </svg>
+          <p class="note">Reference architecture — simplified, no client data.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>Electronic Invoicing Integration Platform (Colombia · DIAN)</h3>
+        <span class="year mono">2022</span>
+      </div>
+      <div class="pgrid">
+        <div>
+          <div class="block"><h4>Problem</h4><p>Healthcare providers (IPS) in Colombia were legally required to issue electronic invoices through the tax authority (DIAN), following strict and frequently changing government resolutions.</p></div>
+          <div class="block"><h4>Solution</h4><p>Built a platform that generates, validates and transmits invoices as XML documents through SOAP web services, tracks the status of every document and stores the full invoicing history.</p></div>
+          <div class="block"><h4>Stack</h4><div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">SOAP</span><span class="chip">XML</span><span class="chip">PostgreSQL</span></div></div>
+          <div class="block"><h4>Impact</h4><p>Adopted by <strong>4 healthcare providers (IPS)</strong> in the department of Bolívar, each issuing <strong>3,000+ invoices per month</strong> — over <strong>12,000 compliant invoices monthly</strong> without building their own integration.</p></div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 460 260" role="img" aria-label="Electronic invoicing flow diagram">
+            <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9aa6c4"/></marker></defs>
+            <g font-family="Inter,sans-serif" font-size="11" fill="#e6ebf7" text-anchor="middle">
+              <rect x="10" y="100" width="95" height="44" rx="8" fill="#1b2550" stroke="#7c9cff"/><text x="57" y="120">Healthcare</text><text x="57" y="135" fill="#9aa6c4" font-size="10">providers (IPS)</text>
+              <rect x="140" y="30" width="170" height="190" rx="10" fill="none" stroke="#243056" stroke-dasharray="5 4"/>
+              <text x="225" y="48" fill="#9aa6c4" font-size="10">Spring Boot platform</text>
+              <rect x="160" y="60" width="130" height="32" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="225" y="80">Build XML invoice</text>
+              <rect x="160" y="106" width="130" height="32" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="225" y="126">Validate rules</text>
+              <rect x="160" y="152" width="130" height="32" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="225" y="172">Send · track status</text>
+              <rect x="345" y="100" width="100" height="44" rx="8" fill="#1b2550" stroke="#ffb86b"/><text x="395" y="120">DIAN</text><text x="395" y="135" fill="#9aa6c4" font-size="10">SOAP services</text>
+              <rect x="175" y="228" width="100" height="28" rx="8" fill="#1b2550" stroke="#4fd1c5"/><text x="225" y="246">PostgreSQL</text>
+            </g>
+            <g stroke="#9aa6c4" stroke-width="1.4" fill="none" marker-end="url(#a2)">
+              <path d="M105 122 H138"/><path d="M225 92 V104"/><path d="M225 138 V150"/><path d="M290 168 H320 V126 H343"/><path d="M225 184 V226"/>
+            </g>
+          </svg>
+          <p class="note">High-level flow.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 3 -->
+    <article class="project">
+      <div class="project-head">
+        <h3>AI-Powered Clinical Documentation Assistant</h3>
+        <span class="year mono">2026 · side project</span>
+      </div>
+      <div class="pgrid">
+        <div>
+          <div class="block"><h4>Problem</h4><p>A private internal-medicine practice spent a lot of time after each visit writing clinical histories, orders and prescriptions by hand.</p></div>
+          <div class="block"><h4>Solution</h4><p>Designed an AI assistant that turns lab results and short clinical notes into a complete, ready-to-sign package: it applies local clinical guidelines and calculators (renal function, cardiovascular risk) and generates eight formatted Word documents per visit.</p></div>
+          <div class="block"><h4>Stack</h4><div class="chips"><span class="chip">Generative AI</span><span class="chip">Claude</span><span class="chip">Prompt engineering</span><span class="chip">AI skills / agents</span><span class="chip">Document automation</span></div></div>
+          <div class="block"><h4>Impact</h4><p>Less documentation time per patient and consistent, standardized output.</p></div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 460 240" role="img" aria-label="AI documentation assistant flow diagram">
+            <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9aa6c4"/></marker></defs>
+            <g font-family="Inter,sans-serif" font-size="11" fill="#e6ebf7" text-anchor="middle">
+              <rect x="10" y="40" width="110" height="40" rx="8" fill="#1b2550" stroke="#7c9cff"/><text x="65" y="64">Lab results</text>
+              <rect x="10" y="150" width="110" height="40" rx="8" fill="#1b2550" stroke="#7c9cff"/><text x="65" y="174">Clinical notes</text>
+              <rect x="160" y="80" width="130" height="70" rx="10" fill="#1b2550" stroke="#ffb86b"/><text x="225" y="108">AI assistant</text><text x="225" y="124" fill="#9aa6c4" font-size="10">guidelines · calculators</text>
+              <rect x="325" y="20" width="125" height="28" rx="7" fill="#1b2550" stroke="#4fd1c5"/><text x="387" y="38">Clinical history</text>
+              <rect x="325" y="56" width="125" height="28" rx="7" fill="#1b2550" stroke="#4fd1c5"/><text x="387" y="74">Lab / imaging orders</text>
+              <rect x="325" y="92" width="125" height="28" rx="7" fill="#1b2550" stroke="#4fd1c5"/><text x="387" y="110">Prescriptions</text>
+              <rect x="325" y="128" width="125" height="28" rx="7" fill="#1b2550" stroke="#4fd1c5"/><text x="387" y="146">Recommendations</text>
+              <rect x="325" y="164" width="125" height="28" rx="7" fill="#1b2550" stroke="#4fd1c5"/><text x="387" y="182">Patient summary</text>
+              <text x="387" y="212" fill="#9aa6c4" font-size="10">+ more · Word documents</text>
+            </g>
+            <g stroke="#9aa6c4" stroke-width="1.4" fill="none" marker-end="url(#a3)">
+              <path d="M120 60 H140 V100 H158"/><path d="M120 170 H140 V130 H158"/><path d="M290 115 H323"/>
+            </g>
+          </svg>
+          <p class="note">No patient data is stored or shown.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <p class="sub">16+ years in enterprise software, the last 4 leading teams.</p>
+    <div class="timeline">
+      <div class="job">
+        <h3>Technical Lead — Sophos Solutions</h3>
+        <div class="meta mono">Mar 2022 – Present · Remote</div>
+        <ul>
+          <li>Lead teams of 4–6 engineers (full-stack, backend, database) from design to delivery.</li>
+          <li>Spring Boot microservices on AWS ECS/Fargate, API Gateway, ELB, SQS, SNS, Lambda, RDS, S3, CloudFront.</li>
+          <li>Own solution architecture, estimation and technical decisions with business stakeholders.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <h3>Software Engineer / Technical Lead — AMERIKA T.I.</h3>
+        <div class="meta mono">Feb 2014 – Mar 2022</div>
+        <ul>
+          <li>Led solution design and mentored development teams for in-house products.</li>
+          <li>Spring Boot microservices; modernized legacy J2EE/SOAP applications.</li>
+          <li>Angular and React front-ends on GCP, plus native Android and iOS apps.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <h3>Software Developer / Engineer — Hildebrando, Inassa, ASP Solutions</h3>
+        <div class="meta mono">Nov 2009 – Feb 2014</div>
+        <ul>
+          <li>Enterprise Java EE and .NET applications with Oracle, MySQL and SQL Server.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt contact">
+  <div class="wrap">
+    <h2>Let's work together</h2>
+    <p>Available for part-time freelance projects (~15 h/week) with overlap in US time zones. Open to full-time remote roles.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn primary" href="mailto:francisco.gomez2101@gmail.com">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/francisco-gomezn/" target="_blank">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/jfranciscogomezn" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Francisco Gomez · Barranquilla, Colombia</div>
+</footer>
+
+</body>
+</html>
