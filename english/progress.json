@@ -1,11 +1,13 @@
 {
   "version": 1,
-  "startDate": null,
+  "startDate": "2026-09-26",
   "currentBlock": 1,
   "approvals": {},
   "history": [],
-  "practiceDays": [],
+  "practiceDays": [
+    "2026-09-26"
+  ],
   "sundays": {},
   "review": [],
-  "updatedAt": "2026-09-27T02:53:16.761Z"
+  "updatedAt": "2026-09-27T03:12:13.044Z"
 }
