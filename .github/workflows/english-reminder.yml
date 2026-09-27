@@ -1,0 +1,57 @@
+name: English daily reminder
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # 03:00 UTC = 10:00 PM Colombia (UTC-5)
+  workflow_dispatch: {}
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send Telegram reminder
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 - <<'PY'
+          import json, os, datetime, urllib.request, urllib.parse
+          P = json.load(open("english/progress.json"))
+          ITEMS = json.load(open("english/items.json"))
+          now = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
+          today = now.date()
+          t = today.isoformat()
+          b = P.get("currentBlock", 1)
+          ap = P.get("approvals", {}).get(str(b), [])
+          link = "https://jfranciscogomezn.github.io/english/"
+          start = P.get("startDate")
+          wd = (today.weekday() + 1) % 7          # 0 = Sunday
+          last_sun = (today - datetime.timedelta(days=wd)).isoformat()
+          lines = []
+          if b > 20:
+              lines.append("🎉 Ya completaste las 100 expresiones. ¡Mantén el repaso del domingo!")
+          elif start and wd != 0 and last_sun >= start and last_sun not in P.get("sundays", {}):
+              lines.append(f"⛔ Tienes pendiente registrar el examen del domingo {last_sun}.")
+              lines.append("La app no te dejará avanzar hasta que ingreses el código o marques 'No aprobé'.")
+          else:
+              words = [f"{(b-1)*5+i+1}. {it['e']}" for i, it in enumerate(ITEMS[(b-1)*5:b*5])]
+              if t in P.get("practiceDays", []):
+                  lines.append(f"✔ Hoy ya practicaste. Bloque {b}: {len(ap)}/2 aprobaciones.")
+                  if len(ap) == 1 and t in ap:
+                      lines.append("Mañana apruebas otra vez y desbloqueas las siguientes 5.")
+              else:
+                  if not start:
+                      lines.append("🚀 ¡Empieza hoy tu plan de inglés! Bloque 1:")
+                  else:
+                      lines.append(f"📚 Hoy no has practicado. Sigues en el bloque {b} ({len(ap)}/2 aprobaciones):")
+                  lines += words
+                  lines.append("⏱ 30 minutos: práctica + prueba de dominio.")
+              if wd == 6:
+                  lines.append("📅 Mañana domingo, 4:00 PM: examen exigente con Claude.")
+          lines.append(link)
+          msg = "\n".join(lines)
+          data = urllib.parse.urlencode({"chat_id": os.environ["TG_CHAT"], "text": msg}).encode()
+          urllib.request.urlopen(f"https://api.telegram.org/bot{os.environ['TG_TOKEN']}/sendMessage", data)
+          print(msg)
+          PY
