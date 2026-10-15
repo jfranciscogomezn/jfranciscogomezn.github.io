@@ -3,9 +3,7 @@
   "startDate": "2026-09-26",
   "currentBlock": 1,
   "approvals": {
-    "1": [
-      "2026-09-28"
-    ]
+    "1": []
   },
   "history": [
     {
@@ -28,8 +26,14 @@
     "2026-09-27": {
       "result": "fail",
       "block": 1
+    },
+    "2026-10-11": {
+      "result": "fail",
+      "block": 1
     }
   },
-  "review": [],
-  "updatedAt": "2026-09-28T20:39:07.305Z"
+  "review": [
+    7
+  ],
+  "updatedAt": "2026-10-15T01:14:22.801Z"
 }
